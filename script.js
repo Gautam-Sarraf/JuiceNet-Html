@@ -2,6 +2,8 @@
 (function () {
   const nav = document.querySelector('.custom-navbar');
   const allLinks = Array.from(document.querySelectorAll('a.nav-link'));
+  const collapseEl = document.getElementById('navbarNav');
+  const toggler = document.querySelector('.navbar-toggler');
 
   if (!allLinks.length) return;
 
@@ -46,6 +48,45 @@
         collapse.hide();
       }
     });
+  });
+
+  // Close collapse when clicking outside of the navbar/collapse area
+  document.addEventListener('click', (event) => {
+    if (!collapseEl) return;
+    const isOpen = collapseEl.classList.contains('show');
+    if (!isOpen) return;
+
+    const clickedInsideCollapse = collapseEl.contains(event.target);
+    const clickedToggler = toggler && toggler.contains(event.target);
+    const clickedInsideNavbar = nav && nav.contains(event.target);
+
+    // If click is outside the open collapse and not on toggler, hide it
+    if (!clickedInsideCollapse && !clickedToggler && !clickedInsideNavbar) {
+      if (typeof bootstrap !== 'undefined') {
+        const instance = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, { toggle: false });
+        instance.hide();
+      }
+    }
+  }, { capture: true });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (event) => {
+    if (event.key !== 'Escape') return;
+    if (!collapseEl || !collapseEl.classList.contains('show')) return;
+    if (typeof bootstrap !== 'undefined') {
+      const instance = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, { toggle: false });
+      instance.hide();
+    }
+  });
+
+  // On resize to desktop, ensure collapse is hidden (no visual flicker)
+  window.addEventListener('resize', () => {
+    if (!collapseEl) return;
+    const desktop = window.innerWidth >= 992;
+    if (desktop && collapseEl.classList.contains('show') && typeof bootstrap !== 'undefined') {
+      const instance = bootstrap.Collapse.getInstance(collapseEl) || new bootstrap.Collapse(collapseEl, { toggle: false });
+      instance.hide();
+    }
   });
 
   // Determine the most visible mapped section in the viewport

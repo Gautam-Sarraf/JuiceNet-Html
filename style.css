@@ -142,7 +142,8 @@ body {
   position: relative;
   text-decoration: none;
   color: #000;
-  font-weight: 500;
+  font-weight: 400;
+  font-family: 'AloveraLight';
   transition: color var(--transition-fast);
   padding-bottom: 8px;
 }
@@ -160,6 +161,7 @@ body {
 
 .nav-links .nav-link:hover {
   color: #1a1b1b;
+  font-weight: bold;
 }
 
 .nav-links .nav-link:hover::after {
@@ -168,6 +170,7 @@ body {
 
 .nav-links .nav-link.active {
   color: #1a1b1b;
+  font-weight: bold;
 }
 
 .nav-links .nav-link.active::after {
@@ -203,9 +206,9 @@ body {
 }
 
 .icon-btn img {
-  width: 20px;
-  height: 20px;
-  margin: 10px;
+  width: 23.79px;
+  height: 23.7px;
+  margin: 9px;
 }
 
 /* Buttons */
@@ -443,7 +446,7 @@ body {
 /* Social Media Sidebar */
 .socials {
   position: absolute;
-  right: 40px;
+  right: 80px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -484,8 +487,8 @@ body {
 .scroll-indicator {
   position: absolute;
   /* pinned relative to .hero */
-  right: 20px;
-  bottom: 20px;
+  right: 70px;
+  bottom: 50px;
   z-index: 10;
   display: inline-block;
 }
@@ -700,54 +703,60 @@ body {
 
 .about-image {
   position: relative;
-  width: 50%;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
+/* .about-image img {
+  width: -10%;
+  height: 506.12px;
+} */
+
 .about-image img:first-child {
-  width: 100%;
+  width: 90%;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .image-overlay {
   position: absolute;
-  left: 70%;
-  top: 70%;
+  left: 75%;
+  top: 75%;
   transform: translate(-50%, -50%);
-  width: 70%;
+  width: 60%;
 }
 
 .image-overlay img {
   width: 300px;
-  height: auto;
+  height: 330px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .experience-badge {
   position: absolute;
-  top: -210px;
-  right: 0px;
+  top: -270px;
+  right: 50px;
   width: 166px;
   height: 107px;
-  background-color: var(--brand-green);
+  background-color: #01BA77;
   color: #fff;
-  padding: 10px 20px;
+  padding: 5px 5px;
   text-align: center;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
 .experience-badge h2 {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 56px;
+  font-weight: 400;
+  margin-bottom: -3px;
 }
 
 .experience-badge p {
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 1px;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 0px;
+  font-family: "AloeveraThin";
 }
 
 .about-text {
@@ -800,10 +809,15 @@ body {
 .feature-card {
   flex: 1;
   background: linear-gradient(to bottom, #02120c, #067e52);
+  border: 1px solid #6EAE2F;
   color: #fff;
   padding: 16px;
   width: 218.09px;
   height: 170px;
+}
+
+.feature-card:hover {
+  border: 2px solid #01BA77;
 }
 
 .round-border {
@@ -823,6 +837,7 @@ body {
   line-height: 140%;
   font-family: 'AloeveraThin';
   font-weight: bold;
+  letter-spacing: 0px;
 }
 
 .about-text h1 .high1 {
@@ -889,7 +904,7 @@ body {
 .solution-card {
   background-color: #F9FAFB;
   padding: 40px 30px;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
   text-align: left;
   transition: background-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
   position: relative;
@@ -911,24 +926,35 @@ body {
 }
 
 .solution-card p {
-  font-size: 14px;
-  line-height: 1.6;
-  color: #666;
-  margin-bottom: 20px;
+  font-size: 16px;
+  line-height: 140%;
+  color: #6B7280;
+  /* margin-bottom: 10px; */
+  font-weight: 400;
 }
 
 .solution-card a {
   text-decoration: none;
-  color: var(--brand-green);
-  font-weight: bold;
-  font-size: 14px;
+  color: #01BA77;
+  font-weight: 500;
+  font-size: 16px;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
   display: inline-block;
 }
 
+.solution-card .arrow-icon {
+  margin: 10px;
+  width: 20px;
+  height: 20px;
+  transform: translateY(-2px);
+  align-items: center;
+}
+
+
 .solution-card:hover {
-  background-color: var(--brand-green);
-  box-shadow: var(--shadow-green-soft);
+  background-color: #01BA77;
+  box-shadow: 0px 4px 60px 0px #01BA7729;
+  box-shadow: 0px 4px 16px 0px #01BA774D;
   color: #fff;
 }
 
@@ -1005,45 +1031,57 @@ body {
 .pricing-grid {
   display: flex;
   justify-content: center;
-  gap: 30px;
+  gap: 50px;
   flex-wrap: wrap;
   /* Makes it responsive */
 }
 
 .pricing-card {
-  background-color: #f7f2f2;
-  color: #0f0f0f;
-  padding: 30px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  color: #082544;
+  padding: 20px;
   width: 458px;
-  min-height: 428px;
+  height: 438px;
+  /* fixed to match design */
+  gap: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border: 1px solid #444;
+  box-sizing: border-box;
+  /* include padding & border inside fixed height */
+  overflow: hidden;
+  /* prevent inner overflow pushing outside */
+  border: 2px solid;
+  border-image-slice: 1;
+  border-image-source: linear-gradient(335.82deg, #02120C 0.64%, #01BA77 100.69%);
   transition: transform var(--transition-fast);
 }
 
 .pricing-card:hover {
   transform: scale(1.05);
-  background: linear-gradient(to bottom right, var(--brand-green-2), #063323);
-  color: #fff;
+  background: linear-gradient(335.38deg, #063323 -16.02%, #01BA77 100.68%);
+  color: #F1F5F9;
+  border: none;
+  /* keep thickness to avoid layout shift */
+}
+
+.pricing-card:hover .feat {
+  color: #D1D5DB;
 }
 
 .plan-header {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .plan-header h3 {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: 400;
 }
 
 .plan-price {
-  font-size: 48px;
+  font-size: 46px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .plan-price span {
@@ -1053,9 +1091,9 @@ body {
 
 .line {
   width: 100%;
-  height: 2px;
-  background-color: gray;
-  margin: 20px 0;
+  border: 1px solid #D1D5DB;
+  margin: 10px 0;
+  pointer-events: none;
 }
 
 .plan-content {
@@ -1068,15 +1106,22 @@ body {
 .plan-features {
   list-style: none;
   padding: 0;
-  margin-bottom: 30px;
+  margin-bottom: 16px;
 }
 
 .plan-features li {
+  color: #334155;
+  font-weight: 400;
+  line-height: 140%;
   font-size: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
   padding-left: 25px;
   position: relative;
   text-align: left;
+}
+
+.pricing-card:hover .plan-features li {
+  color: #D1D5DB;
 }
 
 .plan-features li::before {
@@ -1092,9 +1137,9 @@ body {
 
 .feat {
   font-weight: 300;
-  color: gray;
+  color: #6B7280;
   font-size: 18px;
-  margin-bottom: 20px;
+  margin: 20px;
   text-align: left;
 }
 
@@ -1118,7 +1163,6 @@ body {
 .btn-solid:hover {
   background-color: #fff;
   color: var(--brand-green);
-  border: 2px solid var(--brand-green);
 }
 
 /* RESPONSIVE */
@@ -1287,7 +1331,7 @@ body {
 /* ---------- Features Section ---------- */
 .features-section {
   text-align: center;
-  background-color: #F9FAFB;
+  background-color: #fdfdfd;
 }
 
 .features-section .section-label {
@@ -1496,7 +1540,7 @@ body {
 
 /* Left side image */
 .jn-app-image img {
-  width: 600px;
+  width: 709px;
   height: auto;
   display: block;
 }
@@ -1664,13 +1708,14 @@ body {
 /* Product Card */
 .ev-prod-card {
   position: relative;
-  background: #fff;
+  background: #FFFFFF;
   border: 1px solid #eaeaea;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   padding: 35px;
+  justify-content: center;
   text-align: center;
   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
-  width: 409.3px;
+  width: 405.3px;
   height: 636px;
   max-width: auto;
 }
@@ -1683,12 +1728,12 @@ body {
 /* Product Image */
 .ev-prod-img {
   margin-bottom: 15px;
-  width: 300px;
-  height: 300px;
+  width: 338px;
+  height: 338px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f9f9f9;
+  background: #FFFFFF;
   overflow: hidden;
 }
 
@@ -1701,29 +1746,28 @@ body {
 /* Price */
 .ev-prod-price {
   font-size: 28px;
-  color: #121111;
+  color: #292929;
   font-weight: 500;
   line-height: 24px;
   letter-spacing: 0px;
   vertical-align: middle;
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .ev-prod-oldprice {
   text-decoration: line-through;
   color: #666666;
   font-size: 20px;
-  margin-left: 100px;
+  margin-left: 70px;
+  margin-right: 5px;
   gap: 8px;
 }
 
 .ev-prod-off {
-  font-size: 14px;
-  color: #292929;
-  font-weight: 600;
-  margin-left: 6px;
   font-size: 20px;
+  color: #292929;
+  font-weight: 400;
 }
 
 /* Product Name */
@@ -1733,7 +1777,7 @@ body {
   line-height: 140%;
   letter-spacing: 0px;
   vertical-align: middle;
-  font-weight: 600;
+  font-weight: bold;
   color: #0c1c36;
   margin-bottom: 10px;
 }
@@ -1742,7 +1786,7 @@ body {
 .ev-prod-desc {
   display: flex;
   text-align: left;
-  font-size: 14px;
+  font-size: 16px;
   color: #666666;
   line-height: 1.4;
   margin-bottom: 15px;
@@ -1760,14 +1804,14 @@ body {
   text-decoration: none;
   padding: 10px 10px;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 16px;
   transition: background 0.3s ease;
   position: absolute;
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 40px);
-  margin-top: auto;
+  margin-bottom: 15px;
 }
 
 .ev-prod-btn:hover {
@@ -1991,8 +2035,9 @@ body {
   color: #f0fdf4;
 }
 
-.newsletter-text .high8 {
+.newsletter-text .highlast {
   font-family: "AloeveraThin";
+  font-weight: bold;
 }
 
 .newsletter-text strong {
@@ -2032,12 +2077,11 @@ body {
 /* Footer Main */
 .footer {
   background: #f5f5f5;
-  padding: 40px 20px;
   position: relative;
   /* Set position to relative */
   z-index: 1;
   /* Give it a lower z-index */
-  margin-top: -50px;
+  margin-top: 50px;
   /* Use a negative margin to pull the footer up and cause the overlap */
 }
 
@@ -2046,8 +2090,13 @@ body {
   margin: auto;
   display: flex;
   justify-content: space-between;
+  padding-bottom: 50px;
   flex-wrap: wrap;
   gap: 40px;
+}
+
+.footer-logo {
+  margin-left: -80px;
 }
 
 .footer-logo img {
@@ -2069,7 +2118,7 @@ body {
 
 .footer-links h4,
 .footer-social h4 {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 600;
   margin-bottom: 15px;
   color: #001e3c;
@@ -2086,8 +2135,10 @@ body {
 
 .footer-links ul li a {
   text-decoration: none;
-  color: #001e3c;
-  font-size: 14px;
+  color: #082544;
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.8;
   transition: 0.3s;
   position: relative;
   /* Add this line */
@@ -2102,12 +2153,14 @@ body {
   bottom: 0;
   width: 0%;
   height: 2px;
-  background: #121212;
+  background: #082544;
   transition: width 0.3s ease;
 }
 
 .footer-links ul li a:hover {
-  color: #0b0b0b;
+  color: #082544;
+  font-weight: bold;
+  opacity: 1;
 }
 
 .footer-links ul li a:hover::after {
@@ -2115,16 +2168,22 @@ body {
 }
 
 .footer-links ul li a.active {
-  color: #0b0b0b;
+  color: #082544;
+  font-weight: bold;
+  opacity: 1;
 }
 
 .footer-links ul li a.active::after {
   width: 100%;
 }
 
+.footer-social {
+  margin-right: -80px;
+}
+
 .footer-social .icons {
   display: flex;
-  gap: 15px;
+  gap: 35px;
 }
 
 .footer-social .icons a {
@@ -2140,26 +2199,31 @@ body {
 
 /* Bottom bar */
 .footer-bottom {
-  background: #001e3c;
+  background: #082544;
   color: #fff;
-  font-size: 13px;
+  font-size: 16px;
   padding: 12px 20px;
 }
 
 .footer-bottom .bottom-container {
-  max-width: 1200px;
+  max-width: 1440px;
+  height: 70px;
   margin: auto;
   display: flex;
   justify-content: space-between;
+  padding: 24px;
+  padding-left: -80px;
+  padding-right: -80px;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 }
 
 .footer-bottom a {
   color: #fff;
   text-decoration: none;
-  margin-left: 15px;
-  font-size: 13px;
+  margin-left: 20px;
+  font-size: 16px;
+  line-height: 140%;
 }
 
 .footer-bottom a:hover {
@@ -2507,6 +2571,5 @@ body {
   .footer-bottom .bottom-container {
     flex-direction: column;
     align-items: center;
-    gap: 6px;
   }
 }
