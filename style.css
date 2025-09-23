@@ -3,10 +3,10 @@
 
 @font-face {
   font-family: "Alovera Display";
-  src: url("/fonts/alovera-display.woff2") format("woff2"),
-    url("/fonts/alovera-display.woff") format("woff"),
-    url("/fonts/alovera-display.ttf") format("truetype"),
-    url(/fonts/Aloevera-Regular.otf) format("opentype");
+  src: url("fonts/alovera-display.woff2") format("woff2"),
+    url("fonts/alovera-display.woff") format("woff"),
+    url("fonts/alovera-display.ttf") format("truetype"),
+    url(fonts/Aloevera-Regular.otf) format("opentype");
   font-weight: 200;
   /* Regular */
   font-style: normal;
