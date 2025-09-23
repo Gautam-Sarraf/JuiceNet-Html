@@ -435,7 +435,7 @@ body {
 .app-buttons img {
   width: 181px;
   height: 60px;
-  margin-right: 15px;
+  margin-right: 10px;
   transition: transform var(--transition-fast);
 }
 
@@ -1122,7 +1122,7 @@ body {
 }
 
 .pricing-card:hover .plan-features li {
-  color: #D1D5DB;
+  color: #F1F5F9;
 }
 
 .plan-features li::before {
