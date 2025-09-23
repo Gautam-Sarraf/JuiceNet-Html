@@ -283,11 +283,14 @@
 
   .image-overlay {
     position: absolute;
-    left: 58%;
-    top: 62%;
-    transform: translate(-50%, -50%);
-    width: 50%;
+    right: 10px;
+    bottom: 10px;
+    left: auto;
+    top: auto;
+    transform: none;
+    width: 46%;
     max-width: 200px;
+    z-index: 2;
   }
 
   .image-overlay img {
@@ -302,6 +305,7 @@
     right: 10px;
     transform: scale(0.82);
     transform-origin: top right;
+    z-index: 3;
   }
 }
 
