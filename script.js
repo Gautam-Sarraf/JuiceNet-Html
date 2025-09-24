@@ -247,4 +247,35 @@
   computeStep();
   setActiveDot(0);
   startAuto();
+
+  // Add variables for touch detection
+let touchStartX = 0;
+let touchEndX = 0;
+const swipeThreshold = 50; // Minimum pixels to trigger a slide
+
+// Add touch event listeners to the carousel container
+carousel.addEventListener('touchstart', (e) => {
+  // Stop auto-sliding and record the initial touch position
+  stopAuto();
+  touchStartX = e.touches[0].clientX;
+});
+
+carousel.addEventListener('touchend', (e) => {
+  // Record the final touch position
+  touchEndX = e.changedTouches[0].clientX;
+  const swipeDistance = touchStartX - touchEndX; // positive for left swipe
+
+  // If the swipe is a significant leftward swipe, trigger the next slide
+  if (swipeDistance > swipeThreshold) {
+    slideNext();
+  }
+
+  // Restart auto-sliding after the touch interaction ends
+  startAuto();
+});
+
+// To prevent the page from scrolling while swiping horizontally
+carousel.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+});
 })();
