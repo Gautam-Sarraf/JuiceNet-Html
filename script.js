@@ -249,33 +249,66 @@
   startAuto();
 
   // Add variables for touch detection
-let touchStartX = 0;
-let touchEndX = 0;
-const swipeThreshold = 50; // Minimum pixels to trigger a slide
+  let touchStartX = 0;
+  let touchEndX = 0;
+  const swipeThreshold = 50; // Minimum pixels to trigger a slide
 
-// Add touch event listeners to the carousel container
-carousel.addEventListener('touchstart', (e) => {
-  // Stop auto-sliding and record the initial touch position
-  stopAuto();
-  touchStartX = e.touches[0].clientX;
-});
+  carousel.addEventListener('touchstart', (e) => {
+    stopAuto();
+    touchStartX = e.touches[0].clientX;
+  });
 
-carousel.addEventListener('touchend', (e) => {
-  // Record the final touch position
-  touchEndX = e.changedTouches[0].clientX;
-  const swipeDistance = touchStartX - touchEndX; // positive for left swipe
+  carousel.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    const swipeDistance = touchStartX - touchEndX;
 
-  // If the swipe is a significant leftward swipe, trigger the next slide
-  if (swipeDistance > swipeThreshold) {
-    slideNext();
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        // Left swipe → next slide
+        slideNext();
+      } else {
+        // Right swipe → previous slide
+        slidePrev();
+      }
+    }
+
+    startAuto();
+  });
+
+  // Function to slide to previous item
+  function slidePrev() {
+    if (animating) return;
+    animating = true;
+
+    // Get current transform value
+    const currentTransform = getComputedStyle(track).transform;
+    let matrix = new DOMMatrix(currentTransform);
+    let currentX = matrix.m41; // current translateX in px
+
+    // Move track right by 'step' amount
+    track.style.transition = 'transform 600ms ease';
+    track.style.transform = `translateX(${currentX + step}px)`;
+
+    // Reset animating flag after transition
+    track.addEventListener(
+      'transitionend',
+      () => {
+        animating = false;
+      },
+      { once: true }
+    );
   }
 
-  // Restart auto-sliding after the touch interaction ends
-  startAuto();
-});
 
-// To prevent the page from scrolling while swiping horizontally
-carousel.addEventListener('touchmove', (e) => {
-  e.preventDefault();
-});
+  // Optional: Prevent vertical scrolling when swiping horizontally
+  carousel.addEventListener('touchmove', (e) => {
+    const touchCurrentX = e.touches[0].clientX;
+    const horizontalMovement = Math.abs(touchCurrentX - touchStartX);
+
+    // If horizontal movement is greater than vertical movement, prevent scroll
+    if (horizontalMovement > 10) {
+      e.preventDefault();
+    }
+  });
+
 })();

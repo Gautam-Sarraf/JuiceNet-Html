@@ -45,6 +45,7 @@ body {
   color: #fff;
   background: #000;
   overflow-x: hidden;
+  width: 100%;
 }
 
 /* ========== Global Design Tokens ========== */
@@ -83,48 +84,39 @@ body {
   }
 }
 
+/* ========== Navbar ========== */
 .custom-navbar {
   background: #fff;
   color: #000;
-  padding: 15px 30px;
+  padding: 10px 40px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
-/* Desktop gutters for navbar to align with content (≥1200px) */
+/* Larger desktops: give some breathing space */
 @media (min-width: 1200px) {
   .custom-navbar {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-
-  .logo img {
-    margin-left: 0;
+    padding-left: 60px;
+    padding-right: 60px;
   }
 }
 
+/* Logo */
 .logo img {
   width: 162px;
   cursor: pointer;
-  margin-left: 60px;
   display: block;
   border: none;
   outline: none;
-}
-
-.custom-navbar .logo:focus img,
-.custom-navbar .logo:focus-visible img {
-  outline: none;
-  box-shadow: none;
+  margin: 0;
+  /* prevent pushing layout */
 }
 
 .custom-navbar .logo:focus-visible {
   outline: 2px solid #00b26f;
-  /* brand green */
   outline-offset: 4px;
   border-radius: 6px;
-}
-
-.custom-navbar .logo {
-  -webkit-tap-highlight-color: transparent;
 }
 
 /* Navbar Links */
@@ -133,6 +125,9 @@ body {
   display: flex;
   gap: 25px;
   padding-left: 0;
+  margin: 0;
+  flex-wrap: wrap;
+  /* prevents overflow on tighter widths */
 }
 
 .nav-links .nav-link {
@@ -157,20 +152,13 @@ body {
   transition: width var(--transition-fast);
 }
 
-.nav-links .nav-link:hover {
-  color: #1a1b1b;
-  font-weight: bold;
-}
-
-.nav-links .nav-link:hover::after {
-  width: 100%;
-}
-
+.nav-links .nav-link:hover,
 .nav-links .nav-link.active {
   color: #1a1b1b;
   font-weight: bold;
 }
 
+.nav-links .nav-link:hover::after,
 .nav-links .nav-link.active::after {
   width: 100%;
 }
@@ -182,17 +170,10 @@ body {
   gap: 15px;
 }
 
-/* Make hamburger align right and collapse fill width on small screens */
-.custom-navbar .navbar-toggler {
-  margin-left: auto;
-}
-
-.custom-navbar .navbar-collapse {
-  width: 100%;
-}
-
-.custom-navbar .navbar-collapse.show {
-  padding-top: 10px;
+.iconse {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
 }
 
 .icon-btn {
@@ -210,34 +191,29 @@ body {
 }
 
 /* Buttons */
+.btn-outline,
+.btn-solid1 {
+  padding: 7px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  height: 46px;
+  margin: 0;
+  /* reset the hardcoded margins */
+}
+
 .btn-outline {
   border: 2px solid var(--brand-green);
   background: transparent;
   color: var(--brand-green);
-  padding: 7px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  height: 46px;
-  margin-right: 60px;
+  width: 97px;
 }
 
 .btn-solid1 {
-  border: 2px var(--brand-green);
   background: var(--brand-green);
-  color: white;
-  padding: 7px 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all var(--transition-fast);
-  height: 46px;
-  margin-right: 60px;
-}
-
-.btn-outline {
-  width: 97px;
-  margin-right: -10px;
-  margin-left: 40px;
+  border: 2px solid var(--brand-green);
+  color: #fff;
+  width: 121px;
 }
 
 .btn-outline:hover,
@@ -246,13 +222,35 @@ body {
   color: #fff;
 }
 
-.btn-solid1 {
-  width: 121px;
+/* ========== Responsive ========== */
+@media (max-width: 1200px) {
+  .iconse {
+    margin-right: 25px;
+  }
+  .icon-btn {
+    width: 30px;
+    height: 30px;
+  }
+  .icon-btn img {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+  }
+  .nav-links {
+    gap: revert;
+  }
+
+  .custom-navbar .logo {
+    width: 100px;
+  }
+
+  .custom-navbar .logo img {
+    width: 120px;
+  }
 }
 
-/* Responsive Styling */
+/* Tablets & smaller */
 @media (max-width: 992px) {
-  /* Stack navbar items vertically */
   .nav-links {
     flex-direction: column;
     gap: 15px;
@@ -260,7 +258,9 @@ body {
     padding-top: 20px;
   }
 
-  /* Action buttons take full width */
+  .iconse {
+    margin-right: 20px;
+  }
   .nav-actions {
     flex-direction: column;
     align-items: stretch;
@@ -271,7 +271,6 @@ body {
   .btn-outline,
   .btn-solid1 {
     width: 100%;
-    margin-left: 0;
   }
 
   .icon-btn {
@@ -279,21 +278,11 @@ body {
   }
 }
 
-@media (max-width: 576px) {
-  .logo img {
-    width: 130px;
-  }
-
-  .custom-navbar {
-    padding: 12px 16px;
-  }
-}
-
-/* Phablets (max-width: 768px): tighten spacing a bit more */
+/* Phablets */
 @media (max-width: 768px) {
   .custom-navbar {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
   }
 
   .nav-links {
@@ -301,25 +290,7 @@ body {
   }
 }
 
-/* ---------- Navbar gutters and collapse ---------- */
-@media (min-width: 1200px) {
-  .custom-navbar {
-    padding-left: 80px;
-    padding-right: 80px;
-  }
-}
-
-@media (max-width: 768px) {
-  .custom-navbar {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .nav-links {
-    gap: 12px;
-  }
-}
-
+/* Mobile */
 @media (max-width: 576px) {
   .logo img {
     width: 130px;
@@ -875,7 +846,7 @@ body {
 }
 
 /* ---------- About section responsive ---------- */
-@media (max-width: 1200px) {
+/* @media (max-width: 1999px) {
   .about-content-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -888,7 +859,10 @@ body {
   .about-text {
     width: 100%;
   }
-
+  .about {
+    max-width: 100%;
+    flex-wrap: wrap;
+  }
   .stats-container {
     flex-wrap: wrap;
     gap: 16px;
@@ -903,14 +877,14 @@ body {
     grid-template-columns: repeat(3, minmax(200px, 1fr));
     gap: 20px;
   }
-}
+} */
 
 @media (max-width: 992px) {
   .about-content-container {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding: 40px 20px;
+    padding: 20px 20px;
     gap: 30px;
   }
 
@@ -920,9 +894,17 @@ body {
   }
 
   .feature-cards {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px !important;
+  }
+
+  .section-tag {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .section-tag::before {
+    top: 30px;
   }
 
   .about-heading {
@@ -935,9 +917,6 @@ body {
   }
 
   /* Make base image fluid and center it */
-  .about-image {
-    justify-content: center;
-  }
 
   .about-image img:first-child {
     width: 100%;
@@ -947,22 +926,22 @@ body {
 
   /* Keep overlay inside the bounds on tablets */
   .image-overlay {
-    left: 60%;
-    top: 68%;
-    width: 55%;
+    left: 20%;
+    top: 65%;
+    width: 60%;
+  }
+
+  .about-image {
+    margin-bottom: 100px;
   }
 
   .image-overlay img {
-    width: 100%;
-    height: auto;
-    max-width: 240px;
+    max-width: 220px;
   }
 
-  /* Pull the badge closer so it does not overflow */
   .experience-badge {
-    right: 16px;
-    top: -180px;
-    transform: scale(0.9);
+    right: 8px;
+    top: 0px;
   }
 
   .about-text {
@@ -972,7 +951,12 @@ body {
 
 @media (max-width: 768px) {
   .feature-cards {
-    grid-template-columns: 1fr;
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+  .feature-card {
+    width: 100%;
+    max-width: 180px;
   }
 
   .section-tag::before {
@@ -982,10 +966,13 @@ body {
   .about-image {
     margin-bottom: 40px;
   }
+
   .section-tag {
     padding-bottom: 20px;
-    left: -35px;
+    left: -45px;
+    bottom: 20px;
   }
+
   .image-overlay {
     left: 55%;
     top: 65%;
@@ -1008,8 +995,25 @@ body {
     font-size: 32px;
   }
 
+  .about-text h1 {
+    font-size: 25px;
+  }
+
+  .feature-cards {
+    grid-template-columns: 1fr;
+    align-items: center;
+  }
+
+  .feature-cards .feature-card {
+    margin-bottom: 20px;
+  }
+
+  .feature-cards .feature-card p br {
+    display: none;
+  }
+
   .stat-item h2 {
-    font-size: 42px;
+    font-size: 25px;
   }
 
   .about {
@@ -1055,6 +1059,104 @@ body {
     transform: scale(0.82);
     transform-origin: top right;
     z-index: 3;
+  }
+
+  .about,
+  .about-details,
+  .about-content-container {
+    overflow-x: hidden;
+    box-sizing: border-box;
+  }
+
+  .about-content-container {
+    max-width: 100%;
+    padding: 80px clamp(20px, 5vw, 80px);
+    /* Flexible padding */
+  }
+
+  .about-image img:first-child {
+    max-width: 100%;
+    /* Prevents stretching beyond container */
+  }
+
+  .about-text p {
+    max-width: 100%;
+    /* Avoids fixed width overflow */
+    width: auto;
+  }
+
+  .image-overlay {
+    max-width: 90%;
+    overflow: hidden;
+  }
+
+  .experience-badge {
+    max-width: 95%;
+  }
+}
+
+/* Specifically target extra-large screens */
+@media (min-width: 1441px) {
+  .about {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 1999px) {
+  .about-content-container {
+    padding: 60px clamp(20px, 5vw, 60px);
+    /* flexible padding instead of fixed 80px */
+    max-width: 100%;
+    /* prevent pushing outside viewport */
+    box-sizing: border-box;
+  }
+
+  .about-text p {
+    max-width: 100%;
+    /* override fixed 694px */
+    width: auto;
+  }
+
+  /* .image-overlay {
+    left: auto;
+    right: 5%;
+    top: 70%;
+    transform: translateY(-50%);
+    max-width: 280px;
+  } */
+}
+
+@media (max-width: 1330px) {
+  .feature-cards {
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
+    gap: 10px;
+    /* box-sizing: border-box; */
+  }
+
+  .feature-card {
+    flex: 1 180px;
+    max-width: 180px;
+    /* keep them contained */
+    text-align: left;
+  }
+
+  .round-border {
+    size: 12px;
+  }
+
+  .feature-card p {
+    font-size: 14px;
+  }
+
+  .feature-card p br {
+    display: none;
+  }
+
+  .feature-cards {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
 
@@ -1206,11 +1308,34 @@ body {
 
 @media (max-width: 768px) {
   .solutions-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr !important;
   }
 
   .service-tag::before {
     display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .solutions-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .solutions-header {
+    text-align: left;
+  }
+
+  .solutions-header h2 {
+    font-size: 28px;
+    width: 100%;
+  }
+
+  .solutions-header h2 br {
+    display: none;
+  }
+
+  .solutions-header .service-tag {
+    font-size: 14px;
   }
 }
 
@@ -1423,7 +1548,7 @@ body {
 }
 
 /* ---------- Laptop gap fixes (Products/Pricing) ---------- */
-@media (max-width: 1199.98px) and (min-width: 992px) {
+@media (min-width: 1025px) and (max-width: 1199.98px) {
   .pricing-grid {
     grid-template-columns: repeat(2, 1fr) !important;
   }
@@ -1466,6 +1591,23 @@ body {
   .ev-prod-section {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .pricing-header {
+    text-align: left;
+    width: 100%;
+  }
+
+  .pricing-plans .pricing-header h2 {
+    font-size: 28px;
+    width: 100%;
+  }
+
+  .section-tag-pricing {
+    font-size: 14px;
+    left: 5px;
   }
 }
 
@@ -1598,6 +1740,38 @@ body {
   font-family: "AloveraBold";
 }
 
+@media (max-width: 576px) {
+  .container .left-content h1 {
+    font-size: 28px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .left-content h1 br {
+    display: none;
+  }
+
+  .left-content .impact-label {
+    font-size: 14px;
+  }
+
+  .impact-label {
+    justify-content: left !important;
+  }
+
+  .right-content p {
+    text-align: left !important;
+  }
+
+  .stats-grid {
+    width: 100% !important;
+  }
+
+  .stats-grid .stat-item1 h2 {
+    text-align: left !important;
+  }
+}
+
 /* ---------- Impact and Features shrinking ---------- */
 @media (max-width: 1024px) {
   .container {
@@ -1630,16 +1804,14 @@ body {
 }
 
 @media (max-width: 768px) {
-  .left-content h1 {
-    font-size: 2.2em;
-  }
-
   .stat-item1 h2 {
     font-size: 2.8em;
   }
 
-  .impact-section {
+  .impact-section .container {
     padding: 40px 16px;
+    align-items: center;
+    text-align: center;
   }
 
   .right-content,
@@ -1649,11 +1821,32 @@ body {
   }
 
   .right-content {
-    align-items: flex-start;
+    align-items: center;
+    width: 100%;
   }
+
+  .right-content p {
+    text-align: center;
+  }
+
+  .right-content .description {
+    width: 100%;
+  }
+
+  .impact-label {
+    justify-content: center;
+  }
+
   .stats-grid {
-    margin-left: 0;
     flex-wrap: wrap;
+  }
+
+  .stats-grid .stat-item1 h2 {
+    text-align: center;
+  }
+
+  .stats-grid .stat-item1 p {
+    text-align: center;
   }
 
   .feature-item h3 {
@@ -1880,7 +2073,7 @@ body {
 @media (max-width: 1199.98px) and (min-width: 992px) {
   /* Keep two columns around the central image on laptops */
   .features-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: repeat(2, 1fr);
     padding: 0 24px;
     row-gap: 36px;
   }
@@ -1914,7 +2107,7 @@ body {
 /* Tablets and below: single column */
 @media (max-width: 991.98px) {
   .features-grid {
-    grid-template-columns: 1fr !important;
+    grid-template-columns: 1fr 1fr !important;
     padding: 0 16px;
   }
 
@@ -1933,6 +2126,10 @@ body {
 }
 
 @media (max-width: 768px) {
+  .features-section {
+    padding: 20px 16px;
+  }
+
   .features-section h1 {
     font-size: 1.8em;
   }
@@ -1974,6 +2171,17 @@ body {
 
   .section-label::before {
     display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .feature-item.top-left,
+  .feature-item.top-right,
+  .feature-item.bottom-left,
+  .feature-item.bottom-right {
+    flex-basis: calc(50% - 20px);
+    margin: 0px !important;
+    text-align: center;
   }
 }
 
@@ -2109,20 +2317,43 @@ body {
   font-family: "AloveraBold";
 }
 
-@media (max-width: 768px) {
-  .jn-app-title {
-    font-size: 32px;
+@media (max-width: 576px) {
+  .jn-app-content {
+    max-width: 100%;
+    text-align: left;
+    padding: 20px 16px;
+  }
+
+  .jn-app-content .jn-app-title {
+    font-size: 25px;
+  }
+
+  .jn-app-subtitle {
+    font-size: 12px;
   }
 
   .jn-app-image img {
     width: 100%;
     max-width: 400px;
     height: auto;
-    margin: 0 auto 20px;
+    margin: 0 auto 0px;
   }
 
   .jn-app-subtitle::before {
     display: none;
+  }
+
+  .jn-app-features {
+    text-align: left;
+  }
+
+  .jn-app-features li {
+    font-size: 12px;
+  }
+
+  .jn-app-description {
+    text-align: left;
+    font-size: 12px;
   }
 }
 
@@ -2131,6 +2362,7 @@ body {
   padding: 60px 20px;
   background: #f9fafb;
   font-family: Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 .ev-prod-container {
@@ -2313,7 +2545,7 @@ body {
 
 /* ---------- EV Products: grid and image sizing (no desktop changes) ---------- */
 /* Laptops: keep two columns and fluid images */
-@media (max-width: 1199.98px) and (min-width: 992px) {
+@media (min-width: 1025px) and (max-width: 1199.98px) {
   .ev-prod-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 24px;
@@ -2374,6 +2606,7 @@ body {
   .ev-prod-price {
     font-size: 22px;
   }
+
   .ev-prod-subtitle::before {
     display: none;
   }
@@ -2574,12 +2807,36 @@ body {
     gap: 15px;
   }
 
+  .blog-section .blog-header h2 {
+    font-size: 28px;
+  }
+
   .blog-header p::before {
     display: none;
   }
 
   .blog-card {
     min-width: 80%;
+  }
+}
+
+@media (max-width: 576px) {
+  .blog-card {
+    min-width: 100%;
+    height: auto;
+  }
+
+  .blog-card img {
+    height: auto;
+  }
+
+  .view-all {
+    align-self: self-end;
+    margin-top: -50px;
+    width: 25%;
+    padding: 0px;
+    text-align: center;
+    font-size: 10px !important;
   }
 }
 
@@ -2598,7 +2855,7 @@ body {
   top: -80px;
   position: relative;
   /* Set position to relative */
-  z-index: 2;
+  z-index: 4;
   text-align: left;
 }
 
@@ -2699,6 +2956,7 @@ body {
   z-index: 1;
   /* Give it a lower z-index */
   margin-top: 50px;
+
   /* Use a negative margin to pull the footer up and cause the overlap */
 }
 
@@ -2707,7 +2965,7 @@ body {
   margin: auto;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 50px;
+  padding-bottom: 60px;
   flex-wrap: wrap;
   gap: 40px;
 }
@@ -2717,7 +2975,7 @@ body {
 }
 
 .footer-logo img {
-  width: 130px;
+  width: 160px;
   margin-bottom: 15px;
 }
 
@@ -2848,17 +3106,23 @@ body {
 }
 
 /* ---------- Footer: column layout and centering on small screens ---------- */
-@media (max-width: 991.98px) {
+@media (max-width: 1440px) {
+  /* .footer {
+    max-width: 100%;
+  } */
+
   .footer-container {
-    flex-direction: column;
-    align-items: flex-start;
+    /* flex-direction: column;
+    align-items: flex-start; */
     gap: 24px;
+    padding: 0;
   }
 
   .footer-logo,
   .footer-links,
   .footer-social {
-    width: 100%;
+    width: 100% !important;
+    margin: 20px !important;
   }
 
   .footer-links ul {
@@ -2868,12 +3132,13 @@ body {
   }
 
   /* Prevent horizontal overflow on tablets/phones */
-  .newsletter {
+  /* .newsletter {
     width: 100% !important;
     max-width: 100% !important;
+    height: auto !important;
     left: auto;
     right: auto;
-  }
+  } */
 
   .footer,
   .footer-container,
@@ -2887,23 +3152,22 @@ body {
     padding-left: 24px !important;
     padding-right: 24px !important;
     height: auto;
-    /* allow wrapping without clipping */
   }
 }
 
 @media (max-width: 575.98px) {
   .footer-container {
     align-items: center;
-    text-align: center;
+    text-align: left;
   }
 
   .footer-links ul {
-    grid-template-columns: 1fr;
-    justify-items: center;
+    grid-template-columns: 1fr 1fr;
+    justify-items: left;
   }
 
   .footer-social .icons {
-    justify-content: center;
+    justify-content: left;
   }
 
   .footer-bottom .bottom-container {
@@ -2966,6 +3230,24 @@ body {
 }
 
 /* ====== Global Responsive Enhancements (non-destructive) ====== */
+/* Inline style replacements */
+.scroll-bob {
+  display: block;
+  animation: bob 1.8s infinite ease-in-out;
+}
+
+.footer-mail-icon {
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+/* Extra small fix: break long hero headings on phones */
+@media (max-width: 576px) {
+  .hero-text h1 {
+    white-space: normal;
+  }
+}
+
 /* Large tablets and below */
 @media (max-width: 1200px) {
   .hero-text h1 {
